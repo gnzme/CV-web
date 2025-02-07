@@ -1,66 +1,233 @@
-body {
-    font-family: 'Times New Roman', Times, serif;
-    line-height: 1.6;
+:root {
+    --primary-color: #004D40;
+    --secondary-color: #00796B;
+    --background-gradient-start: #004D40;
+    --background-gradient-end: #00695C;
+    --text-color: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --nav-background: #1C1C1C;
+}
+
+* {
     margin: 0;
     padding: 0;
-    background-image: url('fondo.jpeg');
-    background-size: cover; /* Hace que la imagen cubra todo el fondo */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    box-sizing: border-box;
 }
 
-header {
-    background: #e0e0e0;
-    color: #333;
-    padding: 20px 0;
-    text-align: center;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: linear-gradient(135deg, 
+        var(--background-gradient-start) 0%, 
+        var(--background-gradient-end) 100%);
+    min-height: 100vh;
 }
 
-header h1 {
-    font-weight: bold;
-    margin: 10px 0;
+/* Navegación */
+.navbar {
+    background-color: var(--nav-background);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-header p {
-    margin: 5px 0;
+.navbar-brand {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 500;
 }
 
-.foto-perfil {
-    width: 383px;
-    height: 386px;
+.navbar-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: opacity 0.2s ease;
+}
+
+.navbar-links a:hover {
+    opacity: 0.8;
+}
+
+/* Contenido Principal */
+.main-content {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Sección de Perfil */
+.profile-section {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
-section {
-    padding: 20px;
-    background-color: #fff;
-    margin: 10px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.profile-info {
+    flex: 1;
 }
 
-h2 {
-    font-weight: bold;
-    color: #555;
+.profile-info h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
 }
 
-footer {
-    background: #e0e0e0;
-    color: #333;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+.profile-info h2 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
 }
 
-footer a {
-    color: #333;
+.affiliations {
+    margin-bottom: 2rem;
+}
+
+.affiliations img {
+    height: 24px;
+    margin-right: 1rem;
+    vertical-align: middle;
+}
+
+/* Enlaces y Botones */
+.social-links {
+    margin: 1.5rem 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: var(--text-color);
     text-decoration: none;
-    font-weight: bold;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
 }
 
-footer a:hover {
-    text-decoration: underline;
+.social-links a:hover {
+    opacity: 1;
+}
+
+.download-cv {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    margin-top: 1rem;
+}
+
+.download-cv:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Texto y Párrafos */
+p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .navbar-links {
+        gap: 1rem;
+    }
+
+    .main-content {
+        padding: 2rem 1rem;
+    }
+
+    .profile-info h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Efectos de Wave Background */
+.wave-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.4;
+    background: linear-gradient(
+        45deg,
+        var(--background-gradient-start) 0%,
+        var(--background-gradient-end) 100%
+    );
+}
+
+/* Iconos y elementos decorativos */
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+/* Links institucionales */
+.institution-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+.institution-link:hover {
+    opacity: 0.8;
 }
