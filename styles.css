@@ -109,10 +109,29 @@ body {
     margin-bottom: 2rem;
 }
 
-.affiliations img {
-    height: 24px;
-    margin-right: 1rem;
-    vertical-align: middle;
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.skill-tag {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.profile-info ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.profile-info ul li {
+    margin-bottom: 0.5rem;
 }
 
 /* Enlaces y Botones */
@@ -125,12 +144,19 @@ body {
 .social-links a {
     color: var(--text-color);
     text-decoration: none;
-    opacity: 0.9;
-    transition: opacity 0.2s ease;
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
 }
 
 .social-links a:hover {
-    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .download-cv {
@@ -172,6 +198,10 @@ p {
     .social-links {
         justify-content: center;
     }
+
+    .skills-container {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -194,40 +224,4 @@ p {
     .profile-info h1 {
         font-size: 2rem;
     }
-}
-
-/* Efectos de Wave Background */
-.wave-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.4;
-    background: linear-gradient(
-        45deg,
-        var(--background-gradient-start) 0%,
-        var(--background-gradient-end) 100%
-    );
-}
-
-/* Iconos y elementos decorativos */
-.icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 0.5rem;
-    vertical-align: middle;
-}
-
-/* Links institucionales */
-.institution-link {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: opacity 0.2s ease;
-}
-
-.institution-link:hover {
-    opacity: 0.8;
 }
