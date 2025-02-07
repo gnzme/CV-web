@@ -1,227 +1,144 @@
-:root {
-    --primary-color: #004D40;
-    --secondary-color: #00796B;
-    --background-gradient-start: #004D40;
-    --background-gradient-end: #00695C;
-    --text-color: #FFFFFF;
-    --text-secondary: rgba(255, 255, 255, 0.8);
-    --nav-background: #1C1C1C;
+/* [Todo tu CSS actual se mantiene igual hasta el último @media query] */
+
+/* Nuevos estilos para la sección de Proyectos */
+.projects-section {
+    padding: 6rem 0 4rem 0;
+    margin-top: 2rem;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.6;
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
     color: var(--text-color);
-    background: linear-gradient(135deg, 
-        var(--background-gradient-start) 0%, 
-        var(--background-gradient-end) 100%);
-    min-height: 100vh;
-}
-
-/* Navegación */
-.navbar {
-    background-color: var(--nav-background);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.navbar-brand {
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 1.25rem;
     font-weight: 500;
 }
 
-.navbar-links {
-    display: flex;
-    gap: 2rem;
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    padding: 0 1rem;
 }
 
-.navbar-links a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 400;
-    transition: opacity 0.2s ease;
-}
-
-.navbar-links a:hover {
-    opacity: 0.8;
-}
-
-/* Contenido Principal */
-.main-content {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Sección de Perfil */
-.profile-section {
-    display: flex;
-    gap: 3rem;
-    align-items: flex-start;
-}
-
-.profile-image {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+.project-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
     overflow: hidden;
-    flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.profile-image img {
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.project-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-.profile-info {
-    flex: 1;
+.project-card:hover .project-image img {
+    transform: scale(1.05);
 }
 
-.profile-info h1 {
-    font-size: 2.5rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+.project-content {
+    padding: 1.5rem;
 }
 
-.profile-info h2 {
+.project-content h3 {
     font-size: 1.25rem;
-    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.project-content p {
+    font-size: 0.95rem;
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
+    line-height: 1.6;
 }
 
-.affiliations {
-    margin-bottom: 2rem;
-}
-
-.skills-container {
+.project-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin: 1rem 0;
+    margin-bottom: 1.5rem;
 }
 
-.skill-tag {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.9rem;
+.tag {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
     color: var(--text-color);
+    transition: background-color 0.3s ease;
 }
 
-.profile-info ul {
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-secondary);
+.tag:hover {
+    background: rgba(255, 255, 255, 0.15);
 }
 
-.profile-info ul li {
-    margin-bottom: 0.5rem;
-}
-
-/* Enlaces y Botones */
-.social-links {
-    margin: 1.5rem 0;
+.project-links {
     display: flex;
     gap: 1rem;
 }
 
-.social-links a {
+.project-link {
     color: var(--text-color);
     text-decoration: none;
-    font-size: 1.2rem;
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
+    font-size: 0.9rem;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-}
-
-.social-links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.download-cv {
-    display: inline-block;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--text-color);
-    padding: 0.75rem 1.5rem;
+    gap: 0.5rem;
+    transition: opacity 0.3s ease;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 6px;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-    margin-top: 1rem;
 }
 
-.download-cv:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+.project-link:hover {
+    background: rgba(255, 255, 255, 0.15);
 }
 
-/* Texto y Párrafos */
-p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-}
-
-/* Responsive Design */
+/* Ajustes responsive adicionales para la sección de proyectos */
 @media (max-width: 768px) {
-    .profile-section {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
     }
 
-    .profile-image {
-        width: 150px;
-        height: 150px;
-    }
-
-    .social-links {
-        justify-content: center;
-    }
-
-    .skills-container {
-        justify-content: center;
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
     }
 }
 
 @media (max-width: 480px) {
-    .navbar {
-        padding: 1rem;
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
-    .navbar-brand {
-        font-size: 1rem;
+    .project-card {
+        margin: 0 1rem;
     }
 
-    .navbar-links {
-        gap: 1rem;
+    .project-content {
+        padding: 1.25rem;
     }
 
-    .main-content {
-        padding: 2rem 1rem;
-    }
-
-    .profile-info h1 {
-        font-size: 2rem;
+    .project-content h3 {
+        font-size: 1.1rem;
     }
 }
