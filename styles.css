@@ -24,8 +24,8 @@ header p {
 }
 
 .foto-perfil {
-    width: 150px;
-    height: 150px;
+    width: 383px;
+    height: 386px;
     border-radius: 50%;
     object-fit: cover;
 }
