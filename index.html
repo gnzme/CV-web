@@ -3,32 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gonzalo Medina C. - CV</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Tu Nombre - CV</title>
+    <style>
+        :root {
+            --primary-color: #1a4a3c;
+            --text-color: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .main-content {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c7660 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: var(--text-color);
+        }
+
+        .profile-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            padding-top: 2rem;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-info h1 {
+            margin: 0 0 0.5rem 0;
+        }
+
+        .profile-info h2 {
+            margin: 0 0 1rem 0;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        .affiliations {
+            margin: 1rem 0;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .download-cv {
+            display: inline-block;
+            background-color: #444;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .download-cv:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <img src="yo.JPG" alt="Foto de Tu Nombre" class="foto-perfil">
-        <h1>Gonzalo Medina C.</h1>
-        <p>Electronic Engineer | Freelance AI Language Projects</p>
-    </header>
-    <section>
-        <h2>Experiencia</h2>
-        <ul>
-            <li>Trabajo 1: Descripción</li>
-            <li>Trabajo 2: Descripción</li>
-        </ul>
-    </section>
-    <section>
-        <h2>Educación</h2>
-        <ul>
-            <li>Institución 1: Detalles</li>
-            <li>Institución 2: Detalles</li>
-        </ul>
-    </section>
-    <footer>
-        <p>Contacto: tu-email@example.com</p>
-        <a href="tu-cv.pdf" download>Descargar CV en PDF</a>
-    </footer>
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">Tu Nombre</a>
+        <div class="navbar-links">
+            <a href="#bio">Bio</a>
+            <a href="#projects">Projects</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="profile-section">
+            <div class="profile-image">
+                <!-- Reemplaza con tu foto -->
+                <img src="tu-foto.jpg" alt="Foto de perfil">
+            </div>
+            
+            <div class="profile-info">
+                <h1>Tu Nombre</h1>
+                <h2>Tu Título</h2>
+                
+                <div class="affiliations">
+                    <p>Tu descripción profesional aquí. Puedes incluir tu experiencia, educación y objetivos profesionales.</p>
+                </div>
+
+                <div class="social-links">
+                    <!-- Agrega tus enlaces sociales aquí -->
+                    <a href="#" target="_blank">Email</a> |
+                    <a href="#" target="_blank">GitHub</a> |
+                    <a href="#" target="_blank">LinkedIn</a>
+                </div>
+
+                <a href="#" class="download-cv">⬇ Download CV</a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
