@@ -23,7 +23,7 @@
             </div>
             
             <div class="profile-info">
-                <h1>Gonzalo Medina Ceballos</h1>
+                <h1>Gonzalo Medina C.</h1>
                 <h2>Electronic Engineer | AI Projects Freelance</h2>
                 
                 <div class="affiliations">
@@ -127,19 +127,47 @@
     <div class="chat-content">
         <div class="chat-messages" id="chatMessages">
             <div class="message-bubble bot">
+                <div class="bot-info">
+                    <div class="bot-avatar">
+                        <img src="robot.png" alt="BERCO-02">
+                        <div class="status-dot"></div>
+                    </div>
+                </div>
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <div class="chat-profile">
-            <img src="robot.png" alt="Bot Assistant" class="profile-image">
-            <div class="profile-info">
-                <h3>Berco-02</h3>
-                <p>Virtual assistant</p>
-            </div>
+        <div class="quick-replies" id="quickReplies">
+            <button onclick="sendSuggestion('experience')" class="quick-reply-btn">
+                <span class="icon">💼</span>
+                <span class="text">Experience</span>
+            </button>
+            <button onclick="sendSuggestion('skills')" class="quick-reply-btn">
+                <span class="icon">🔧</span>
+                <span class="text">Skills</span>
+            </button>
+            <button onclick="sendSuggestion('education')" class="quick-reply-btn">
+                <span class="icon">🎓</span>
+                <span class="text">Education</span>
+            </button>
+            <button onclick="sendSuggestion('projects')" class="quick-reply-btn">
+                <span class="icon">💻</span>
+                <span class="text">Projects</span>
+            </button>
+            <button onclick="sendSuggestion('contact')" class="quick-reply-btn">
+                <span class="icon">📧</span>
+                <span class="text">Contact</span>
+            </button>
         </div>
 
         <div class="chat-input-container">
-            <input type="text" id="userInput" placeholder="Ingrese su mensaje...">
+            <input type="text" id="userInput" placeholder="Type your message...">
             <button onclick="sendMessage()" class="send-btn">
                 <i class="fas fa-paper-plane"></i>
             </button>
