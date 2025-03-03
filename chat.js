@@ -5,34 +5,71 @@ const responses = {
     'education': 'I am an Electronics and Intelligent Systems Engineer, and I am currently taking a Data Science course at Alura Latam.',
     'contact': 'You can contact me via email at gon.medinae@gmail.com or by phone at +56979981364.',
     'projects': 'I work on AI projects as a Contributor/Reviewer at Scale Labs AI, evaluating and improving language models.',
-    'hello': 'Hello! I am BERCO-02, Gonzalo\'s virtual assistant. I can help you with information about:\n\n' +
-            '💼 Experience (type "experience")\n' +
-            '🔧 Skills (type "skills")\n' +
-            '🎓 Education (type "education")\n' +
-            '💻 Projects (type "projects")\n' +
-            '📧 Contact information (type "contact")\n\n' +
-            'What would you like to know about?',
-    'default': 'I apologize, I didn\'t understand your question. I can provide information about:\n\n' +
-               '💼 Professional experience\n' +
-               '🔧 Technical skills\n' +
-               '🎓 Education\n' +
-               '💻 Projects\n' +
-               '📧 Contact information\n\n' +
-               'Please try asking about one of these topics.'
+    'hello': 'Hello! I am BERCO-02, Gonzalo\'s virtual assistant. How can I help you today?',
+    'default': 'I apologize, I didn\'t understand your question. Please try asking about my experience, skills, education, projects, or contact information.'
 };
 
-// Initial chat state
+// Chat state
 let chatVisible = true;
+let isTyping = false;
 
-// Toggle chat visibility
-function toggleChat() {
-    const chatBox = document.getElementById('chatBox');
-    chatVisible = !chatVisible;
-    chatBox.style.display = chatVisible ? 'block' : 'none';
+// Initialize when document is ready
+document.addEventListener('DOMContentLoaded', function() {
+    initializeChat();
+});
+
+function initializeChat() {
+    const input = document.getElementById('userInput');
+    if (input) {
+        input.addEventListener('keypress', handleKeyPress);
+    }
+
+    // Show welcome message with typing animation
+    showWelcomeMessage();
 }
 
-// Main function to send messages
-function sendMessage() {
+async function showWelcomeMessage() {
+    const welcomeMessage = `Hello! I am BERCO-02, Gonzalo's virtual assistant. I can help you with information about:
+
+💼 Experience
+🔧 Skills
+🎓 Education
+💻 Projects
+📧 Contact
+
+What would you like to know about?`;
+
+    const typingIndicator = showTypingIndicator();
+    await sleep(1500);
+    typingIndicator.remove();
+    addMessage(welcomeMessage, 'bot');
+}
+
+function showTypingIndicator() {
+    const messages = document.getElementById('chatMessages');
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message-bubble bot typing';
+    typingDiv.innerHTML = `
+        <div class="bot-info">
+            <div class="bot-avatar">
+                <img src="berco02.png" alt="BERCO-02">
+                <div class="status-dot"></div>
+            </div>
+        </div>
+        <div class="typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    `;
+    messages.appendChild(typingDiv);
+    messages.scrollTop = messages.scrollHeight;
+    return typingDiv;
+}
+
+async function sendMessage() {
+    if (isTyping) return;
+
     const input = document.getElementById('userInput');
     const message = input.value.trim();
     
@@ -40,63 +77,102 @@ function sendMessage() {
 
     // Add user message
     addMessage(message, 'user');
-
-    // Get and display response with delay
-    setTimeout(() => {
-        const response = getResponse(message.toLowerCase());
-        addMessage(response, 'bot');
-    }, 500);
-
-    // Clear input
     input.value = '';
+
+    isTyping = true;
+
+    // Show typing indicator
+    const typingIndicator = showTypingIndicator();
+
+    // Simulate bot thinking
+    await sleep(Math.random() * 1000 + 500);
+    typingIndicator.remove();
+
+    // Get and show response
+    const response = getResponse(message.toLowerCase());
+    addMessage(response, 'bot');
+
+    isTyping = false;
 }
 
-// Add messages to chat
 function addMessage(text, type) {
     const messages = document.getElementById('chatMessages');
     const messageDiv = document.createElement('div');
     messageDiv.className = `message-bubble ${type}`;
-    
-    // Handle multi-line messages
-    const formattedText = text.split('\n').map(line => 
-        `<p>${line}</p>`
-    ).join('');
-    
-    messageDiv.innerHTML = formattedText;
+
+    if (type === 'bot') {
+        messageDiv.innerHTML = `
+            <div class="bot-info">
+                <div class="bot-avatar">
+                    <img src="berco02.png" alt="BERCO-02">
+                    <div class="status-dot"></div>
+                </div>
+            </div>
+            <div class="message-content">
+                ${formatMessage(text)}
+            </div>
+        `;
+    } else {
+        messageDiv.innerHTML = `
+            <div class="message-content user-message">
+                ${formatMessage(text)}
+            </div>
+        `;
+    }
+
     messages.appendChild(messageDiv);
+    scrollToBottom();
+}
+
+function formatMessage(text) {
+    return text.split('\n').map(line => 
+        line.trim() ? `<p>${line}</p>` : '<br>'
+    ).join('');
+}
+
+function scrollToBottom() {
+    const messages = document.getElementById('chatMessages');
     messages.scrollTop = messages.scrollHeight;
 }
 
-// Get appropriate response
 function getResponse(message) {
-    // Check for exact matches
+    // Check for exact matches first
     if (responses[message]) {
         return responses[message];
     }
 
     // Check for keywords in message
-    for (const [key, value] of Object.entries(responses)) {
-        if (message.includes(key)) {
-            return value;
+    const keywords = {
+        'experience': ['experience', 'work', 'job', 'professional'],
+        'skills': ['skills', 'abilities', 'can', 'know', 'capable'],
+        'education': ['education', 'study', 'degree', 'university', 'school'],
+        'projects': ['projects', 'portfolio', 'work', 'developed'],
+        'contact': ['contact', 'email', 'phone', 'reach', 'message']
+    };
+
+    for (const [category, words] of Object.entries(keywords)) {
+        if (words.some(word => message.includes(word))) {
+            return responses[category];
         }
     }
 
     return responses.default;
 }
 
-// Handle Enter key press
 function handleKeyPress(event) {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
         sendMessage();
     }
 }
 
-// Send predefined suggestions
 function sendSuggestion(topic) {
+    if (isTyping) return;
+
     const topics = {
-        'experience': 'What is your professional experience?',
-        'skills': 'What technical skills do you have?',
-        'education': 'What is your educational background?',
+        'experience': 'Tell me about your experience',
+        'skills': 'What skills do you have?',
+        'education': 'What is your education background?',
         'projects': 'What projects have you worked on?',
         'contact': 'How can I contact you?'
     };
@@ -108,54 +184,47 @@ function sendSuggestion(topic) {
     }
 }
 
-// Initialize when document is ready
-document.addEventListener('DOMContentLoaded', function() {
-    // Add Enter key listener
-    const input = document.getElementById('userInput');
-    if (input) {
-        input.addEventListener('keypress', handleKeyPress);
+function toggleChat() {
+    const chatBox = document.getElementById('chatBox');
+    chatVisible = !chatVisible;
+    
+    if (chatVisible) {
+        chatBox.style.display = 'block';
+        setTimeout(() => {
+            chatBox.classList.add('active');
+        }, 10);
+    } else {
+        chatBox.classList.remove('active');
+        setTimeout(() => {
+            chatBox.style.display = 'none';
+        }, 300);
     }
+}
 
-    // Show welcome message
-    setTimeout(() => {
-        addMessage('Hello! I am BERCO-02, Gonzalo\'s virtual assistant. I can help you with information about:\n\n' +
-                  '💼 Experience (type "experience")\n' +
-                  '🔧 Skills (type "skills")\n' +
-                  '🎓 Education (type "education")\n' +
-                  '💻 Projects (type "projects")\n' +
-                  '📧 Contact (type "contact")\n\n' +
-                  'What would you like to know about?', 'bot');
-    }, 500);
-});
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-// Clear chat
+// Utility function to clear chat
 function clearChat() {
     const messages = document.getElementById('chatMessages');
     messages.innerHTML = '';
-    // Show initial message again
-    addMessage(responses.hello, 'bot');
+    showWelcomeMessage();
 }
 
-// Validate input
-function validateInput(input) {
-    return input.replace(/<[^>]*>?/gm, '').trim();
-}
-
-// Enhanced keyword detection
-function analyzeMessage(message) {
-    const keywords = {
-        'experience': ['experience', 'work', 'professional', 'background'],
-        'skills': ['skills', 'technologies', 'tools', 'programming', 'abilities'],
-        'education': ['education', 'studies', 'degree', 'university', 'academic'],
-        'projects': ['projects', 'portfolio', 'developments', 'work'],
-        'contact': ['contact', 'email', 'phone', 'reach']
-    };
-
-    for (const [category, words] of Object.entries(keywords)) {
-        if (words.some(word => message.includes(word))) {
-            return responses[category];
+// Handle visibility changes
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden && chatVisible) {
+        const messages = document.getElementById('chatMessages');
+        if (!messages.children.length) {
+            showWelcomeMessage();
         }
     }
+});
 
-    return null;
-}
+// Handle window resize
+window.addEventListener('resize', function() {
+    if (chatVisible) {
+        scrollToBottom();
+    }
+});
