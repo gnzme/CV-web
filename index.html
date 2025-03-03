@@ -122,56 +122,32 @@
             </div>
         </section>
     </main>
-<!-- Chat Pop-up -->
 <div class="chat-popup" id="chatBox">
-    <div class="chat-content">
-        <div class="chat-messages" id="chatMessages">
+    <div class="chat-messages" id="chatMessages">
+        <div class="bot-container">
+            <div class="bot-avatar">
+                <img src="berco02.png" alt="BERCO-02">
+            </div>
             <div class="message-bubble bot">
-                <div class="bot-info">
-                    <div class="bot-avatar">
-                        <img src="robot.png" alt="BERCO-02">
-                        <div class="status-dot"></div>
-                    </div>
-                </div>
-                <div class="message-content">
-                    <div class="typing-indicator">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
+                <p>Hello! I am BERCO-02, Gonzalo's virtual assistant. I can help you with information about:</p>
+                <p>What would you like to know about?</p>
             </div>
         </div>
-        
-        <div class="quick-replies" id="quickReplies">
-            <button onclick="sendSuggestion('experience')" class="quick-reply-btn">
-                <span class="icon">💼</span>
-                <span class="text">Experience</span>
-            </button>
-            <button onclick="sendSuggestion('skills')" class="quick-reply-btn">
-                <span class="icon">🔧</span>
-                <span class="text">Skills</span>
-            </button>
-            <button onclick="sendSuggestion('education')" class="quick-reply-btn">
-                <span class="icon">🎓</span>
-                <span class="text">Education</span>
-            </button>
-            <button onclick="sendSuggestion('projects')" class="quick-reply-btn">
-                <span class="icon">💻</span>
-                <span class="text">Projects</span>
-            </button>
-            <button onclick="sendSuggestion('contact')" class="quick-reply-btn">
-                <span class="icon">📧</span>
-                <span class="text">Contact</span>
-            </button>
-        </div>
+    </div>
+    
+    <div class="quick-options">
+        <button class="option-button" onclick="sendSuggestion('experience')">💼 Experience</button>
+        <button class="option-button" onclick="sendSuggestion('skills')">🔧 Skills</button>
+        <button class="option-button" onclick="sendSuggestion('education')">🎓 Education</button>
+        <button class="option-button" onclick="sendSuggestion('projects')">💻 Projects</button>
+        <button class="option-button" onclick="sendSuggestion('contact')">📧 Contact</button>
+    </div>
 
-        <div class="chat-input-container">
-            <input type="text" id="userInput" placeholder="Type your message...">
-            <button onclick="sendMessage()" class="send-btn">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+        <button class="send-button" onclick="sendMessage()">
+            <i class="fas fa-paper-plane"></i>
+        </button>
     </div>
 </div>
 <script src="chat.js"></script>
