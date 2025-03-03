@@ -144,10 +144,10 @@ function getResponse(message) {
     // Check for keywords in message
     const keywords = {
         'experience': ['experience', 'work', 'job', 'professional'],
-        'skills': ['skills', 'abilities', 'can', 'know', 'capable'],
+        'skills': ['skills', 'abilities', 'knowledge', 'know', 'capable'],
         'education': ['education', 'study', 'degree', 'university', 'school'],
-        'projects': ['projects', 'portfolio', 'work', 'developed'],
-        'contact': ['contact', 'email', 'phone', 'reach', 'message']
+        'projects': ['projects', 'portfolio', 'developed'],
+        'contact': ['contact', 'email', 'phone', 'reach']
     };
 
     for (const [category, words] of Object.entries(keywords)) {
