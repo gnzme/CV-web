@@ -122,48 +122,38 @@
             </div>
         </section>
     </main>
-<div class="chat-container">
-    <div class="chat-button" onclick="toggleChat()">
-        <i class="fas fa-comments"></i>
+<!-- Chat Pop-up -->
+<div class="chat-popup" id="chatBox">
+    <div class="chat-header">
+        <div class="header-info">
+            <img src="yo.JPG" alt="Profile" class="chat-avatar">
+            <div>
+                <h4>Gonzalo Medina</h4>
+                <span>Asistente virtual</span>
+            </div>
+        </div>
+        <button onclick="toggleChat()" class="close-btn">×</button>
     </div>
-    
-    <div class="chat-box" id="chatBox">
-        <div class="chat-header">
-            <div class="header-content">
-                <h4>Chat con Gonzalo</h4>
-                <small>Asistente Virtual</small>
-            </div>
-            <button onclick="toggleChat()" class="close-button">
-                <i class="fas fa-times"></i>
-            </button>
+
+    <div class="chat-messages" id="chatMessages">
+        <div class="message-bubble bot">
+            <p>Hola, hablas con el asistente web de Gonzalo.</p>
+            <p>¿En qué te puedo ayudar?</p>
         </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message received">
-                <div class="message-content">
-                    ¡Hola! 👋 Soy el asistente virtual de Gonzalo. Puedes preguntarme sobre:
-                    <ul class="chat-suggestions">
-                        <li onclick="sendSuggestion('experiencia')">💼 Experiencia</li>
-                        <li onclick="sendSuggestion('habilidades')">🔧 Habilidades</li>
-                        <li onclick="sendSuggestion('educacion')">🎓 Educación</li>
-                        <li onclick="sendSuggestion('proyectos')">💻 Proyectos</li>
-                        <li onclick="sendSuggestion('contacto')">📧 Contacto</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="chat-input">
-            <input 
-                type="text" 
-                id="userInput" 
-                placeholder="Escribe tu pregunta..." 
-                onkeypress="handleKeyPress(event)"
-            >
-            <button onclick="sendMessage()">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
+    </div>
+
+    <div class="chat-form">
+        <input type="text" id="userInput" placeholder="Ingrese su mensaje..." required>
+        <button onclick="sendMessage()" class="send-btn">
+            <i class="fas fa-paper-plane"></i>
+        </button>
     </div>
 </div>
+
+<!-- Chat Button -->
+<button class="chat-button" onclick="toggleChat()">
+    <i class="fas fa-comments"></i>
+</button>
 <script src="chat.js"></script>
 </body>
 </html>
