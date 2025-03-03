@@ -52,7 +52,7 @@ function showTypingIndicator() {
     typingDiv.innerHTML = `
         <div class="bot-info">
             <div class="bot-avatar">
-                <img src="berco02.png" alt="BERCO-02">
+                <img src="robot.png" alt="BERCO-02">
                 <div class="status-dot"></div>
             </div>
         </div>
