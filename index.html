@@ -124,36 +124,30 @@
     </main>
 <!-- Chat Pop-up -->
 <div class="chat-popup" id="chatBox">
-    <div class="chat-header">
-        <div class="header-info">
-            <img src="yo.JPG" alt="Profile" class="chat-avatar">
-            <div>
-                <h4>Gonzalo Medina</h4>
-                <span>Asistente virtual</span>
+    <div class="chat-content">
+        <div class="chat-messages" id="chatMessages">
+            <div class="message-bubble bot">
+                <p>Hola, hablas con el asistente web de Gonzalo.</p>
+                <p>¿En qué te puedo ayudar?</p>
             </div>
         </div>
-        <button onclick="toggleChat()" class="close-btn">×</button>
-    </div>
+        
+        <div class="chat-profile">
+            <img src="yo.JPG" alt="Gonzalo Medina" class="profile-image">
+            <div class="profile-info">
+                <h3>Gonzalo Medina</h3>
+                <p>Asistente virtual</p>
+            </div>
+        </div>
 
-    <div class="chat-messages" id="chatMessages">
-        <div class="message-bubble bot">
-            <p>Hola, hablas con el asistente web de Gonzalo.</p>
-            <p>¿En qué te puedo ayudar?</p>
+        <div class="chat-input-container">
+            <input type="text" id="userInput" placeholder="Ingrese su mensaje...">
+            <button onclick="sendMessage()" class="send-btn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
         </div>
     </div>
-
-    <div class="chat-form">
-        <input type="text" id="userInput" placeholder="Ingrese su mensaje..." required>
-        <button onclick="sendMessage()" class="send-btn">
-            <i class="fas fa-paper-plane"></i>
-        </button>
-    </div>
 </div>
-
-<!-- Chat Button -->
-<button class="chat-button" onclick="toggleChat()">
-    <i class="fas fa-comments"></i>
-</button>
 <script src="chat.js"></script>
 </body>
 </html>
