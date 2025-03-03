@@ -1,91 +1,104 @@
-// Objeto con las respuestas predefinidas
+// Predefined responses object
 const responses = {
-    'experiencia': 'Tengo experiencia en evaluación de modelos de IA, liderazgo de equipos técnicos en GEOCOM, y desarrollo de soluciones en electrónica y sistemas inteligentes.',
-    'habilidades': 'Mis principales habilidades incluyen Python, SQL, C++, AutoCAD, Matlab, y metodologías Scrum.',
-    'educacion': 'Soy Ingeniero en Electrónica y Sistemas Inteligentes, y actualmente estoy tomando un curso de Data Science en Alura Latam.',
-    'contacto': 'Puedes contactarme por email a gon.medinae@gmail.com o por teléfono al +56979981364.',
-    'proyectos': 'Trabajo en proyectos de IA como Contributor/Reviewer en Scale Labs AI, evaluando y mejorando modelos de lenguaje.',
-    'hola': '¡Hola! Soy el asistente virtual de Gonzalo. ¿En qué puedo ayudarte?',
-    'default': 'Lo siento, no entiendo tu pregunta. ¿Podrías reformularla? Puedes preguntarme sobre mi experiencia, habilidades, educación, proyectos o información de contacto.'
+    'experience': 'I have experience in AI model evaluation, technical team leadership at GEOCOM, and development of electronics and intelligent systems solutions.',
+    'skills': 'My main skills include Python, SQL, C++, AutoCAD, Matlab, and Scrum methodologies.',
+    'education': 'I am an Electronics and Intelligent Systems Engineer, and I am currently taking a Data Science course at Alura Latam.',
+    'contact': 'You can contact me via email at gon.medinae@gmail.com or by phone at +56979981364.',
+    'projects': 'I work on AI projects as a Contributor/Reviewer at Scale Labs AI, evaluating and improving language models.',
+    'hello': 'Hello! I am BERCO-02, Gonzalo\'s virtual assistant. I can help you with information about:\n\n' +
+            '💼 Experience (type "experience")\n' +
+            '🔧 Skills (type "skills")\n' +
+            '🎓 Education (type "education")\n' +
+            '💻 Projects (type "projects")\n' +
+            '📧 Contact information (type "contact")\n\n' +
+            'What would you like to know about?',
+    'default': 'I apologize, I didn\'t understand your question. I can provide information about:\n\n' +
+               '💼 Professional experience\n' +
+               '🔧 Technical skills\n' +
+               '🎓 Education\n' +
+               '💻 Projects\n' +
+               '📧 Contact information\n\n' +
+               'Please try asking about one of these topics.'
 };
 
-// Estado inicial del chat
+// Initial chat state
 let chatVisible = true;
 
-// Función para alternar la visibilidad del chat
+// Toggle chat visibility
 function toggleChat() {
     const chatBox = document.getElementById('chatBox');
     chatVisible = !chatVisible;
     chatBox.style.display = chatVisible ? 'block' : 'none';
 }
 
-// Función principal para enviar mensajes
+// Main function to send messages
 function sendMessage() {
     const input = document.getElementById('userInput');
     const message = input.value.trim();
     
-    // No hacer nada si el mensaje está vacío
     if (!message) return;
 
-    // Agregar el mensaje del usuario
+    // Add user message
     addMessage(message, 'user');
 
-    // Obtener y mostrar la respuesta con un pequeño delay
+    // Get and display response with delay
     setTimeout(() => {
         const response = getResponse(message.toLowerCase());
         addMessage(response, 'bot');
     }, 500);
 
-    // Limpiar el input
+    // Clear input
     input.value = '';
 }
 
-// Función para agregar mensajes al chat
+// Add messages to chat
 function addMessage(text, type) {
     const messages = document.getElementById('chatMessages');
     const messageDiv = document.createElement('div');
     messageDiv.className = `message-bubble ${type}`;
-    messageDiv.textContent = text;
     
+    // Handle multi-line messages
+    const formattedText = text.split('\n').map(line => 
+        `<p>${line}</p>`
+    ).join('');
+    
+    messageDiv.innerHTML = formattedText;
     messages.appendChild(messageDiv);
-    
-    // Hacer scroll hasta el último mensaje
     messages.scrollTop = messages.scrollHeight;
 }
 
-// Función para obtener la respuesta apropiada
+// Get appropriate response
 function getResponse(message) {
-    // Primero, buscar coincidencias exactas
+    // Check for exact matches
     if (responses[message]) {
         return responses[message];
     }
 
-    // Luego, buscar palabras clave en el mensaje
+    // Check for keywords in message
     for (const [key, value] of Object.entries(responses)) {
         if (message.includes(key)) {
             return value;
         }
     }
 
-    // Si no hay coincidencias, devolver respuesta por defecto
     return responses.default;
 }
 
-// Función para manejar el envío con la tecla Enter
+// Handle Enter key press
 function handleKeyPress(event) {
     if (event.key === 'Enter') {
         sendMessage();
     }
 }
 
-// Función para enviar sugerencias predefinidas
+// Send predefined suggestions
 function sendSuggestion(topic) {
     const topics = {
-        'experiencia': '¿Cuál es tu experiencia profesional?',
-        'habilidades': '¿Qué habilidades técnicas tienes?',
-        'educacion': '¿Cuál es tu formación académica?',
-        'proyectos': '¿En qué proyectos has trabajado?',
-        'contacto': '¿Cómo puedo contactarte?'
+        'experience': 'What is your professional experience?',
+        'skills': 'What technical skills do you have?',
+        'education': 'What is your educational background?',
+        'projects': 'What projects have you worked on?',
+        'contact': 'How can I contact you?'
     };
 
     if (topics[topic]) {
@@ -95,42 +108,47 @@ function sendSuggestion(topic) {
     }
 }
 
-// Inicialización cuando el documento está listo
+// Initialize when document is ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Agregar event listener para la tecla Enter en el input
+    // Add Enter key listener
     const input = document.getElementById('userInput');
     if (input) {
         input.addEventListener('keypress', handleKeyPress);
     }
 
-    // Mostrar mensaje inicial
+    // Show welcome message
     setTimeout(() => {
-        addMessage('Hola, hablas con el asistente web de Gonzalo. ¿En qué te puedo ayudar?', 'bot');
+        addMessage('Hello! I am BERCO-02, Gonzalo\'s virtual assistant. I can help you with information about:\n\n' +
+                  '💼 Experience (type "experience")\n' +
+                  '🔧 Skills (type "skills")\n' +
+                  '🎓 Education (type "education")\n' +
+                  '💻 Projects (type "projects")\n' +
+                  '📧 Contact (type "contact")\n\n' +
+                  'What would you like to know about?', 'bot');
     }, 500);
 });
 
-// Función para limpiar el chat
+// Clear chat
 function clearChat() {
     const messages = document.getElementById('chatMessages');
     messages.innerHTML = '';
-    // Volver a mostrar el mensaje inicial
-    addMessage('Hola, hablas con el asistente web de Gonzalo. ¿En qué te puedo ayudar?', 'bot');
+    // Show initial message again
+    addMessage(responses.hello, 'bot');
 }
 
-// Función para validar el input
+// Validate input
 function validateInput(input) {
-    // Eliminar caracteres especiales y HTML
     return input.replace(/<[^>]*>?/gm, '').trim();
 }
 
-// Mejorar la detección de palabras clave
+// Enhanced keyword detection
 function analyzeMessage(message) {
     const keywords = {
-        'experiencia': ['experiencia', 'trabajo', 'laboral', 'profesional'],
-        'habilidades': ['habilidades', 'skills', 'tecnologías', 'herramientas', 'programación'],
-        'educacion': ['educación', 'estudios', 'título', 'carrera', 'universidad'],
-        'proyectos': ['proyectos', 'portfolio', 'trabajos', 'desarrollos'],
-        'contacto': ['contacto', 'email', 'teléfono', 'comunicar']
+        'experience': ['experience', 'work', 'professional', 'background'],
+        'skills': ['skills', 'technologies', 'tools', 'programming', 'abilities'],
+        'education': ['education', 'studies', 'degree', 'university', 'academic'],
+        'projects': ['projects', 'portfolio', 'developments', 'work'],
+        'contact': ['contact', 'email', 'phone', 'reach']
     };
 
     for (const [category, words] of Object.entries(keywords)) {
