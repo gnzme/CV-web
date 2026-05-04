@@ -18,7 +18,7 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.7;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:.3;pointer-events:none;z-index:0}
- 
+
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(12px);background:rgba(6,13,26,.88);border-bottom:1px solid var(--border);padding:0 5%}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:58px}
@@ -27,13 +27,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(12px);b
 .nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
 .nav-links a:hover{color:var(--cyan)}
- 
+
 /* LAYOUT */
 section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:80px 5%}
 .section-label{font-family:var(--font-mono);font-size:12px;color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
 .section-title{font-size:clamp(26px,4vw,38px);font-weight:600;color:var(--text);margin-bottom:40px;line-height:1.2}
 .section-title span{color:var(--cyan)}
- 
+
 /* HERO */
 #about{min-height:100vh;display:flex;align-items:center;padding-top:100px}
 .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
@@ -55,14 +55,14 @@ section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:80px 
 .status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#00ff88;margin-right:8px;animation:pulse 2s ease-in-out infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,255,136,.4)}50%{opacity:.7;box-shadow:0 0 0 6px rgba(0,255,136,0)}}
- 
+
 /* STATS */
 .stats-wrap{position:relative;z-index:1;padding:0 5%;margin-bottom:0}
 .stats-strip{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px}
 .stat{background:var(--card);padding:24px;text-align:center}
 .stat-num{font-family:var(--font-mono);font-size:28px;color:var(--cyan);font-weight:400}
 .stat-label{font-size:12px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.08em}
- 
+
 /* EXPERIENCE */
 .timeline{position:relative;padding-left:28px}
 .timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:var(--border)}
@@ -74,7 +74,7 @@ section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:80px 
 .tl-desc{color:var(--muted);font-size:14px;line-height:1.7}
 .tl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .tl-tag{font-family:var(--font-mono);font-size:11px;color:var(--cyan);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);padding:2px 10px;border-radius:2px}
- 
+
 /* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
 .skill-card{background:var(--card);border:1px solid var(--border);border-radius:3px;padding:16px;text-align:center;transition:all .2s;cursor:default}
@@ -83,7 +83,7 @@ section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:80px 
 .skill-name{font-family:var(--font-mono);font-size:12px;color:var(--text)}
 .skill-level{height:2px;background:var(--border);border-radius:1px;margin-top:10px;overflow:hidden}
 .skill-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--blue));border-radius:1px;transition:width .8s ease}
- 
+
 /* PROJECTS */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .proj-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;transition:all .25s;position:relative;overflow:hidden}
@@ -95,7 +95,7 @@ section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:80px 
 .proj-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px}
 .proj-link{font-family:var(--font-mono);font-size:12px;color:var(--cyan);text-decoration:none;letter-spacing:.05em}
 .proj-link:hover{text-decoration:underline}
- 
+
 /* CONTACT */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 .contact-item{display:flex;align-items:center;gap:14px;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:3px;margin-bottom:12px;text-decoration:none;color:var(--text);transition:all .2s}
@@ -103,7 +103,7 @@ section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:80px 
 .contact-icon{font-size:20px;width:36px;text-align:center}
 .contact-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-family:var(--font-mono)}
 .contact-val{font-size:14px;color:var(--text);margin-top:2px}
- 
+
 /* CHATBOT */
 .chat-toggle{position:fixed;bottom:28px;right:28px;z-index:200;width:54px;height:54px;background:var(--cyan);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 24px rgba(0,212,255,.4);transition:all .2s}
 .chat-toggle:hover{transform:scale(1.08);background:var(--cyan2)}
@@ -135,14 +135,14 @@ section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:80px 
 .typing span:nth-child(2){animation-delay:.2s}
 .typing span:nth-child(3){animation-delay:.4s}
 @keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
- 
+
 /* FOOTER */
 footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font-family:var(--font-mono);font-size:12px;color:var(--muted);position:relative;z-index:1}
- 
+
 /* ANIMATIONS */
 .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
 .fade-in.visible{opacity:1;transform:translateY(0)}
- 
+
 /* RESPONSIVE */
 @media(max-width:768px){
   .hero-inner,.contact-grid{grid-template-columns:1fr}
@@ -154,7 +154,7 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
 </style>
 </head>
 <body>
- 
+
 <nav>
   <div class="nav-inner">
     <div class="nav-logo"><span>// </span>gonzalo.medina<span>.dev</span></div>
@@ -167,7 +167,7 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
     </ul>
   </div>
 </nav>
- 
+
 <!-- HERO -->
 <section id="about">
   <div class="hero-inner">
@@ -188,7 +188,7 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
     </div>
   </div>
 </section>
- 
+
 <!-- STATS -->
 <div class="stats-wrap">
   <div class="stats-strip fade-in">
@@ -198,7 +198,7 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
     <div class="stat"><div class="stat-num"><span class="status-dot"></span>Open</div><div class="stat-label">to Work</div></div>
   </div>
 </div>
- 
+
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-label fade-in">// 02. work history</div>
@@ -238,7 +238,7 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
     </div>
   </div>
 </section>
- 
+
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-label fade-in">// 03. technical stack</div>
@@ -258,7 +258,7 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
     <div class="skill-card fade-in"><div class="skill-icon">☕</div><div class="skill-name">Java</div><div class="skill-level"><div class="skill-fill" style="width:45%"></div></div></div>
   </div>
 </section>
- 
+
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-label fade-in">// 04. portfolio</div>
@@ -269,7 +269,7 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
       <div class="proj-title">Dallas Housing Market Analysis</div>
       <div class="proj-desc">Exploratory data analysis of real estate pricing trends across 15 Dallas neighborhoods. Built with Pandas and Seaborn, revealing pricing patterns and market velocity by zip code.</div>
       <div class="tl-tags" style="margin-bottom:16px"><span class="tl-tag">Python</span><span class="tl-tag">Pandas</span><span class="tl-tag">Matplotlib</span><span class="tl-tag">Jupyter</span></div>
-      <a href="https://github.com/gnzme/dallas-housing-analysis/blob/main/README.md" target="_blank" class="proj-link">→ View on GitHub</a>
+      <a href="https://github.com/gnzme" target="_blank" class="proj-link">→ View on GitHub</a>
     </div>
     <div class="proj-card fade-in">
       <div class="proj-label">AI · Web Development</div>
@@ -287,7 +287,7 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
     </div>
   </div>
 </section>
- 
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-label fade-in">// 05. get in touch</div>
@@ -299,9 +299,9 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
         <span class="contact-icon">✉️</span>
         <div><div class="contact-label">Email</div><div class="contact-val">gon.medinae@gmail.com</div></div>
       </a>
-      <a href="https://www.linkedin.com/in/gonzalo-medina09/" target="_blank" class="contact-item">
+      <a href="https://www.linkedin.com/in/gonzalomedina09/" target="_blank" class="contact-item">
         <span class="contact-icon">💼</span>
-        <div><div class="contact-label">LinkedIn</div><div class="contact-val">linkedin.com/in/gonzalo-medina09</div></div>
+        <div><div class="contact-label">LinkedIn</div><div class="contact-val">linkedin.com/in/gonzalomedina09</div></div>
       </a>
       <a href="https://github.com/gnzme" target="_blank" class="contact-item">
         <span class="contact-icon">🐙</span>
@@ -319,14 +319,14 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
     </div>
   </div>
 </section>
- 
+
 <footer>
   <span style="color:var(--cyan)">// </span>Gonzalo Medina C. &nbsp;·&nbsp; Dallas, TX &nbsp;·&nbsp; Built with HTML, CSS &amp; Gemini API &nbsp;·&nbsp; <span style="color:var(--cyan)">2025</span>
 </footer>
- 
+
 <!-- CHATBOT -->
 <button class="chat-toggle" onclick="toggleChat()" title="Chat with Gonzalo's AI">💬</button>
- 
+
 <div class="chat-window" id="chatWindow">
   <div class="chat-header">
     <div class="chat-avatar">🤖</div>
@@ -349,74 +349,56 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
     <button class="chat-send" id="sendBtn" onclick="sendMsg()">➤</button>
   </div>
 </div>
- 
+
 <script>
 // =====================================================
 // GEMINI API KEY — Keep this private, do not share
 // =====================================================
 const API_KEY = 'AIzaSyDLBnjHIBNUmJS6A0ZPQLQfRZv0hKaxs8U';
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
- 
+
 const SYSTEM_PROMPT = `You are an AI assistant embedded in Gonzalo Medina's personal portfolio website. Answer questions about him warmly and professionally in English. Keep answers concise (2-4 sentences). If asked in Spanish, answer in Spanish.
 
 FULL PROFILE:
 Name: Gonzalo Medina Ceballos
 Location: Dallas, TX (relocated from Chile)
 Email: gon.medinae@gmail.com
-LinkedIn: https://www.linkedin.com/in/gonzalo-medina09/
+LinkedIn: linkedin.com/in/gonzalomedina09
 Status: Actively seeking opportunities in data analysis, AI engineering, and electronics in Dallas-Fort Worth.
- 
+
 EDUCATION:
 - Electronics and Intelligent Systems Engineering — INACAP, Santiago (2020-2023)
 - Oracle Next Education (Alura LATAM): Data Science + AI (Python, SQL), Back-End + AI (Java, Spring), Oracle Cloud Infrastructure, AI specialization
 - Google Data Analytics Certificate (in progress)
 - Python for Everybody — University of Michigan (Coursera)
 - Technical Support Fundamentals — Google
- 
+
 EXPERIENCE:
 1. Technical Team Lead GPS/Laser/Drone — GEOCOM, Chile (2022-2024)
    Led specialized geospatial equipment team, managed preventive/corrective maintenance, optimized QA processes, inventory and warranty management.
- 
-2. AI Data Annotator/Reviewer — Outlier AI / Scale Labs (2022-2025, remote)
+
+2. AI Data Annotator/Reviewer — Outlier AI / Scale Labs (2022-present, remote)
    LLM training, data annotation for AI feedback, language model improvement across code, reasoning, and factual accuracy domains.
- 
+
 3. Vetting Assistant — Seguridad América SSL (2018-2019)
    SSL certificates, digital signatures, CA/B Forum compliance, technical support.
- 
+
 4. CCTV Technician & Operations Auditor — MAXI-K/CAPRIOLI (2016-2018)
    CCTV installation/maintenance, SQL data analysis, QlikView reporting, staff training.
- 
+
 SKILLS: Python, SQL, C++, Java, Pandas, Matplotlib, Seaborn, Jupyter, AWS Cloud (learning), AutoCAD, Fusion 360, Proteus, Matlab, GPS/Laser systems, Drone technology, AI/LLM annotation, Data Analysis
- 
+
 PROJECTS:
 - Dallas Housing Market Analysis: Python/Pandas/Seaborn analysis of 15 Dallas neighborhoods (GitHub)
 - Interactive AI Portfolio: This website with embedded AI chatbot (GitHub Pages)
 - YOLOv8 Object Detection: Computer vision project combining drone background with ML (in progress)
- 
+
 LANGUAGES: Spanish (native), English (professional)
 HOBBIES: Electronics projects, AI/NLP models, computer vision, programming`;
- 
+
 let chatOpen = false;
 let history = [];
 
-    // 3. Extraer y mostrar la respuesta de Gemini
-    if (data.candidates && data.candidates[0].content.parts[0].text) {
-      typingDiv.textContent = data.candidates[0].content.parts[0].text;
-    } else {
-      typingDiv.textContent = "Lo siento, hubo un problema al procesar tu pregunta. Inténtalo de nuevo.";
-    }
-  } catch (error) {
-    console.error("Error en la API:", error);
-    typingDiv.textContent = "Error de conexión. Por favor, revisa la configuración de la API.";
-  } finally {
-    // Esto asegura que el botón se reactive siempre
-    input.disabled = false;
-    sendBtn.disabled = false;
-    input.focus();
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
-  
-  
 function toggleChat() {
   chatOpen = !chatOpen;
   document.getElementById('chatWindow').classList.toggle('open', chatOpen);
@@ -427,7 +409,7 @@ function openChat() {
   document.getElementById('chatWindow').classList.add('open');
   setTimeout(() => document.getElementById('chatInput').focus(), 100);
 }
- 
+
 function addMsg(text, isUser) {
   const m = document.createElement('div');
   m.className = 'msg ' + (isUser ? 'msg-user' : 'msg-bot');
@@ -436,7 +418,7 @@ function addMsg(text, isUser) {
   c.appendChild(m);
   c.scrollTop = c.scrollHeight;
 }
- 
+
 function addTyping() {
   const t = document.createElement('div');
   t.className = 'msg msg-bot';
@@ -446,13 +428,13 @@ function addTyping() {
   c.appendChild(t);
   c.scrollTop = c.scrollHeight;
 }
- 
+
 function askSugg(el) {
   document.getElementById('suggestions').style.display = 'none';
   document.getElementById('chatInput').value = el.textContent;
   sendMsg();
 }
- 
+
 async function sendMsg() {
   const input = document.getElementById('chatInput');
   const text = input.value.trim();
@@ -490,7 +472,7 @@ async function sendMsg() {
   btn.disabled = false;
   input.focus();
 }
- 
+
 // Scroll reveal animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
