@@ -358,7 +358,63 @@ const API_KEY = 'AIzaSyDLBnjHIBNUmJS6A0ZPQLQfRZv0hKaxs8U';
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
  
 const SYSTEM_PROMPT = `You are an AI assistant embedded in Gonzalo Medina's personal portfolio website. Answer questions about him warmly and professionally in English. Keep answers concise (2-4 sentences). If asked in Spanish, answer in Spanish.
- 
+async function sendMsg() {
+  const input = document.getElementById('chatInput');
+  const messagesContainer = document.getElementById('chatMessages');
+  const sendBtn = document.getElementById('sendBtn');
+  const userText = input.value.trim();
+
+  if (!userText) return;
+
+  // 1. Mostrar mensaje del usuario en el chat
+  const userDiv = document.createElement('div');
+  userDiv.className = 'msg msg-user';
+  userDiv.textContent = userText;
+  messagesContainer.appendChild(userDiv);
+  
+  input.value = '';
+  input.disabled = true;
+  sendBtn.disabled = true;
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+  // 2. Mostrar indicador de "escribiendo..."
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'msg msg-bot';
+  typingDiv.textContent = '...';
+  messagesContainer.appendChild(typingDiv);
+
+  try {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{
+            text: `${SYSTEM_PROMPT}\n\nUser Question: ${userText}`
+          }]
+        }]
+      })
+    });
+
+    const data = await response.json();
+    
+    // 3. Extraer y mostrar la respuesta de Gemini
+    if (data.candidates && data.candidates[0].content.parts[0].text) {
+      typingDiv.textContent = data.candidates[0].content.parts[0].text;
+    } else {
+      typingDiv.textContent = "Lo siento, hubo un problema al procesar tu pregunta. Inténtalo de nuevo.";
+    }
+  } catch (error) {
+    console.error("Error en la API:", error);
+    typingDiv.textContent = "Error de conexión. Por favor, revisa la configuración de la API.";
+  } finally {
+    input.disabled = false;
+    sendBtn.disabled = false;
+    input.focus();
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+}
+
 FULL PROFILE:
 Name: Gonzalo Medina Ceballos
 Location: Dallas, TX (relocated from Chile)
