@@ -398,20 +398,6 @@ HOBBIES: Electronics projects, AI/NLP models, computer vision, programming`;
  
 let chatOpen = false;
 let history = [];
-try {
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{
-          parts: [{
-            text: `${SYSTEM_PROMPT}\n\nPregunta del usuario: ${userText}`
-          }]
-        }]
-      })
-    });
-
-    const data = await response.json();
 
     // 3. Extraer y mostrar la respuesta de Gemini
     if (data.candidates && data.candidates[0].content.parts[0].text) {
