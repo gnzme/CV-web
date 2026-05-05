@@ -300,9 +300,9 @@ footer{border-top:1px solid var(--border);padding:28px 5%;text-align:center;font
         <span class="contact-icon">✉️</span>
         <div><div class="contact-label">Email</div><div class="contact-val">gon.medinae@gmail.com</div></div>
       </a>
-      <a href="https://www.linkedin.com/in/gonzalomedina09/" target="_blank" class="contact-item">
+      <a href="https://www.linkedin.com/in/gonzalo-medina09/" target="_blank" class="contact-item">
         <span class="contact-icon">💼</span>
-        <div><div class="contact-label">LinkedIn</div><div class="contact-val">linkedin.com/in/gonzalomedina09</div></div>
+        <div><div class="contact-label">LinkedIn</div><div class="contact-val">linkedin.com/in/gonzalo-medina09</div></div>
       </a>
       <a href="https://github.com/gnzme" target="_blank" class="contact-item">
         <span class="contact-icon">🐙</span>
@@ -364,7 +364,7 @@ FULL PROFILE:
 Name: Gonzalo Medina Ceballos
 Location: Dallas, TX (relocated from Chile)
 Email: gon.medinae@gmail.com
-LinkedIn: linkedin.com/in/gonzalomedina09
+LinkedIn: linkedin.com/in/gonzalo-medina09
 Status: Actively seeking opportunities in data analysis, AI engineering, and electronics in Dallas-Fort Worth.
 
 EDUCATION:
@@ -378,7 +378,7 @@ EXPERIENCE:
 1. Technical Team Lead GPS/Laser/Drone — GEOCOM, Chile (2022-2024)
    Led specialized geospatial equipment team, managed preventive/corrective maintenance, optimized QA processes, inventory and warranty management.
 
-2. AI Data Annotator/Reviewer — Outlier AI / Scale Labs (2022-present, remote)
+2. AI Data Annotator/Reviewer — Outlier AI / Scale Labs (2022-2025, remote)
    LLM training, data annotation for AI feedback, language model improvement across code, reasoning, and factual accuracy domains.
 
 3. Vetting Assistant — Seguridad América SSL (2018-2019)
@@ -436,43 +436,32 @@ function askSugg(el) {
   sendMsg();
 }
 
-async function sendMsg() {
-  const input = document.getElementById('chatInput');
-  const text = input.value.trim();
-  if (!text) return;
-  input.value = '';
-  const btn = document.getElementById('sendBtn');
-  btn.disabled = true;
-  addMsg(text, true);
-  history.push({ role: 'user', parts: [{ text }] });
-  addTyping();
-  try {
-    const messages = [
-      { role: 'user', parts: [{ text: SYSTEM_PROMPT }] },
-      { role: 'model', parts: [{ text: 'Understood. I am Gonzalo\'s AI assistant, ready to answer questions about him.' }] },
-      ...history
-    ];
+try {
     const res = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: messages,
+        system_instruction: {
+          parts: [{ text: SYSTEM_PROMPT }]
+        },
+        contents: history.length > 0 ? history : [
+          { role: 'user', parts: [{ text: text }] }
+        ],
         generationConfig: { maxOutputTokens: 300, temperature: 0.7 }
       })
     });
     const data = await res.json();
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I had trouble answering that. Try again!';
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text
+      || data.error?.message
+      || 'Sorry, I had trouble answering that. Try again!';
     document.getElementById('typing-indicator')?.remove();
     addMsg(reply, false);
     history.push({ role: 'model', parts: [{ text: reply }] });
     if (history.length > 20) history = history.slice(-20);
   } catch(e) {
     document.getElementById('typing-indicator')?.remove();
-    addMsg('Connection error. Please check your internet connection and try again.', false);
+    addMsg('Connection error. Please try again.', false);
   }
-  btn.disabled = false;
-  input.focus();
-}
 
 // Scroll reveal animations
 const observer = new IntersectionObserver((entries) => {
